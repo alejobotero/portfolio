@@ -6,12 +6,12 @@ export default function Portfolio() {
 
   // Replace with your actual information
   const portfolio = {
-    name: "Your Name",
+    name: "Alejandro Botero",
     title: "Full Stack Developer",
     bio: "Passionate developer specializing in building exceptional digital experiences. I create elegant solutions to complex problems.",
-    email: "your.email@example.com",
-    github: "https://github.com/yourusername",
-    linkedin: "https://linkedin.com/in/yourusername",
+    email: "alej.boat@gmail.com",
+    github: "https://github.com/alejobotero",
+    linkedin: "https://linkedin.com/in/alejboat",
     
     skills: [
       "JavaScript", "React", "Node.js", "Python", 
