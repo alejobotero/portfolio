@@ -21,7 +21,7 @@ export default function Portfolio() {
     projects: [
       {
         id: 1,
-        title: "Project Name 1",
+        title: "Heartspark",
         description: "A full-stack web application that helps users manage their daily tasks with an intuitive interface and real-time updates.",
         tech: ["React", "Node.js", "MongoDB"],
         github: "https://github.com/yourusername/project1",
@@ -29,7 +29,7 @@ export default function Portfolio() {
       },
       {
         id: 2,
-        title: "Project Name 2",
+        title: "Strayfinder",
         description: "An e-commerce platform with payment integration, product management, and user authentication features.",
         tech: ["Next.js", "TypeScript", "Stripe"],
         github: "https://github.com/yourusername/project2",
@@ -37,7 +37,7 @@ export default function Portfolio() {
       },
       {
         id: 3,
-        title: "Project Name 3",
+        title: "Algorithm Visualizer",
         description: "A data visualization dashboard that displays real-time analytics with interactive charts and graphs.",
         tech: ["React", "D3.js", "Express"],
         github: "https://github.com/yourusername/project3",
