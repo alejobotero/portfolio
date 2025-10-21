@@ -31,7 +31,7 @@ export default function Portfolio() {
         id: 2,
         title: "Strayfinder",
         description: "An e-commerce platform with payment integration, product management, and user authentication features.",
-        tech: ["Next.js", "TypeScript", "Stripe"],
+        tech: ["Next.js", "TypeScript", "React"],
         github: "https://github.com/yourusername/project2",
         demo: "https://project2-demo.com"
       },
