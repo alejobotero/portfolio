@@ -40,7 +40,7 @@ export default function Portfolio() {
         title: "Algorithm Visualizer",
         description: "A data visualization dashboard that displays real-time analytics with interactive charts and graphs.",
         tech: ["React", "D3.js", "Express"],
-        github: "https://github.com/yourusername/project",
+        github: "https://github.com/yourusername/project3",
         demo: "https://project3-demo.com"
       }
     ]
