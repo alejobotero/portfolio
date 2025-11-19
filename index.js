@@ -24,7 +24,7 @@ export default function Portfolio() {
         title: "Heartspark",
         description: "A full-stack web application that helps users manage their daily tasks with an intuitive interface and real-time updates.",
         tech: ["React", "Node.js", "MongoDB"],
-        github: "https://github.com/yourusername/project1",
+        github: "https://github.com/yourusername/project",
         demo: "https://project1-demo.com"
       },
       {
