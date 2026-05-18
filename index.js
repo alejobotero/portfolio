@@ -1,221 +1,373 @@
-import React, { useState } from 'react';
-import { Github, Linkedin, Mail, ExternalLink, Code2, Briefcase, User, Menu, X } from 'lucide-react';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alejandro Botero — Full Stack Engineer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-export default function Portfolio() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    :root {
+      --bg: #0b0e1a;
+      --bg2: #111728;
+      --card: #161d30;
+      --card-hover: #1c2540;
+      --blue: #5b8ef0;
+      --purple: #a47cf3;
+      --pink: #f06b9e;
+      --green: #4ade80;
+      --text: #e8eaf6;
+      --muted: #8b92b0;
+      --border: #1e2640;
+    }
 
-  // Replace with your actual information
-  const portfolio = {
-    name: "Alejandro Botero",
-    title: "Full Stack Software Engineer",
-    bio: "SWE with hands-on experience in full-stack web development, databases and agile + scrum environments. Bilingual in Spanish and English, with a strong foundation in algorithms, system design, and practical problem-solving. Eager to contribute to dynamic tech teams through collaborative and user-focused development.",
-    email: "alej.boat@gmail.com",
-    github: "https://github.com/alejobotero",
-    linkedin: "https://linkedin.com/in/alejboat",
-    
-    skills: [
-      "JavaScript", "React", "Node.js", "Python", 
-      "TypeScript", "MongoDB", "PostgreSQL", "Git"
-    ],
-    
-    projects: [
-      {
-        id: 1,
-        title: "Heartspark",
-        description: "A full-stack web application that helps users manage their daily tasks with an intuitive interface and real-time updates.",
-        tech: ["React", "Node.js", "MongoDB"],
-        github: "https://github.com/yourusername/project1",
-        demo: "https://project1-demo.com"
-      },
-      {
-        id: 2,
-        title: "Strayfinder",
-        description: "An e-commerce platform with payment integration, product management, and user authentication features.",
-        tech: ["Next.js", "TypeScript", "React"],
-        github: "https://github.com/yourusername/project2",
-        demo: "https://project2-demo.com"
-      },
-      {
-        id: 3,
-        title: "Algorithm Visualizer",
-        description: "A data visualization dashboard that displays real-time analytics with interactive charts and graphs.",
-        tech: ["React", "D3.js", "Express"],
-        github: "https://github.com/yourusername/project3",
-        demo: "https://project3-demo.com"
-      }
-    ]
-  };
+    html { scroll-behavior: smooth; }
 
-  const scrollToSection = (id) => {
-    setMobileMenuOpen(false);
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-  };
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
 
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-slate-900/80 backdrop-blur-md z-50 border-b border-slate-700">
-        <div className="max-w-6xl mx-auto px-6 py-4">
-          <div className="flex justify-between items-center">
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-              {portfolio.name}
-            </h1>
-            
-            {/* Desktop Menu */}
-            <div className="hidden md:flex gap-8">
-              <button onClick={() => scrollToSection('about')} className="hover:text-blue-400 transition">About</button>
-              <button onClick={() => scrollToSection('projects')} className="hover:text-blue-400 transition">Projects</button>
-              <button onClick={() => scrollToSection('skills')} className="hover:text-blue-400 transition">Skills</button>
-              <button onClick={() => scrollToSection('contact')} className="hover:text-blue-400 transition">Contact</button>
-            </div>
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: rgba(11,14,26,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto;
+      padding: 1.1rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.3rem; font-weight: 800;
+      background: linear-gradient(90deg, var(--blue), var(--purple));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .nav-links { display: flex; gap: 2.2rem; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none;
+      font-size: 0.95rem; font-weight: 500;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--blue); }
 
-            {/* Mobile Menu Button */}
-            <button 
-              className="md:hidden"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            >
-              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
+    /* ── HERO ── */
+    .hero {
+      padding: 9rem 2rem 5rem;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .available-badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-size: .85rem; color: var(--green); margin-bottom: 1.2rem;
+    }
+    .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--green);
+      animation: pulse 1.8s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .5; transform: scale(.8); }
+    }
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 800; line-height: 1.05;
+      background: linear-gradient(135deg, var(--blue), var(--purple), var(--pink));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1.4rem;
+    }
+    .hero-bio {
+      font-size: 1.15rem; color: var(--muted);
+      max-width: 640px; margin-bottom: 2.2rem;
+    }
+    .social-links { display: flex; gap: .75rem; }
+    .social-links a {
+      display: flex; align-items: center; justify-content: center;
+      width: 46px; height: 46px;
+      background: var(--card); border-radius: 10px;
+      color: var(--text); text-decoration: none;
+      border: 1px solid var(--border);
+      transition: background .2s, transform .2s;
+    }
+    .social-links a:hover { background: var(--card-hover); transform: translateY(-2px); }
+    .social-links svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
-          {/* Mobile Menu */}
-          {mobileMenuOpen && (
-            <div className="md:hidden mt-4 pb-4 flex flex-col gap-4">
-              <button onClick={() => scrollToSection('about')} className="text-left hover:text-blue-400 transition">About</button>
-              <button onClick={() => scrollToSection('projects')} className="text-left hover:text-blue-400 transition">Projects</button>
-              <button onClick={() => scrollToSection('skills')} className="text-left hover:text-blue-400 transition">Skills</button>
-              <button onClick={() => scrollToSection('contact')} className="text-left hover:text-blue-400 transition">Contact</button>
-            </div>
-          )}
-        </div>
-      </nav>
+    /* ── SECTION SHARED ── */
+    section { padding: 5rem 2rem; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-header {
+      display: flex; align-items: center; gap: .75rem;
+      margin-bottom: 2.5rem;
+    }
+    .section-header svg { width: 26px; height: 26px; color: var(--blue); fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .section-header h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.9rem; font-weight: 700;
+    }
+    .alt-bg { background: var(--bg2); }
 
-      {/* Hero Section */}
-      <section className="pt-32 pb-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="h-2 w-2 bg-green-400 rounded-full animate-pulse"></div>
-            <span className="text-green-400 text-sm">Available for work</span>
-          </div>
-          <h2 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-            {portfolio.title}
-          </h2>
-          <p className="text-xl md:text-2xl text-slate-300 max-w-2xl mb-8">
-            {portfolio.bio}
-          </p>
-          <div className="flex gap-4">
-            <a href={portfolio.github} target="_blank" rel="noopener noreferrer" 
-               className="p-3 bg-slate-800 rounded-lg hover:bg-slate-700 transition">
-              <Github size={24} />
-            </a>
-            <a href={portfolio.linkedin} target="_blank" rel="noopener noreferrer"
-               className="p-3 bg-slate-800 rounded-lg hover:bg-slate-700 transition">
-              <Linkedin size={24} />
-            </a>
-            <a href={`mailto:${portfolio.email}`}
-               className="p-3 bg-slate-800 rounded-lg hover:bg-slate-700 transition">
-              <Mail size={24} />
-            </a>
-          </div>
-        </div>
-      </section>
+    /* ── ABOUT ── */
+    .about-text {
+      font-size: 1.1rem; color: var(--muted);
+      max-width: 720px; line-height: 1.8;
+    }
 
-      {/* About Section */}
-      <section id="about" className="py-20 px-6 bg-slate-800/50">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex items-center gap-3 mb-8">
-            <User className="text-blue-400" size={28} />
-            <h3 className="text-3xl font-bold">About Me</h3>
-          </div>
-          <p className="text-lg text-slate-300 max-w-3xl leading-relaxed">
-            I'm a developer who loves turning ideas into reality through code. With a strong foundation 
-            in both frontend and backend technologies, I build scalable applications that prioritize 
-            user experience and clean architecture. I'm constantly learning and adapting to new 
-            technologies to stay at the forefront of web development.
-          </p>
-        </div>
-      </section>
+    /* ── PROJECTS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.25rem;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.6rem;
+      transition: background .2s, transform .2s;
+    }
+    .card:hover { background: var(--card-hover); transform: translateY(-3px); }
+    .card h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.2rem; font-weight: 700;
+      margin-bottom: .6rem;
+      transition: color .2s;
+    }
+    .card:hover h3 { color: var(--blue); }
+    .card p { font-size: .9rem; color: var(--muted); margin-bottom: 1rem; line-height: 1.6; }
+    .tech-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1.1rem; }
+    .tech-tag {
+      padding: .25rem .75rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      font-size: .75rem; color: var(--blue);
+    }
+    .card-links { display: flex; gap: 1rem; }
+    .card-links a {
+      display: flex; align-items: center; gap: .35rem;
+      font-size: .85rem; color: var(--muted);
+      text-decoration: none; transition: color .2s;
+    }
+    .card-links a:hover { color: var(--blue); }
+    .card-links svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
-      {/* Projects Section */}
-      <section id="projects" className="py-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex items-center gap-3 mb-12">
-            <Briefcase className="text-blue-400" size={28} />
-            <h3 className="text-3xl font-bold">Featured Projects</h3>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {portfolio.projects.map(project => (
-              <div key={project.id} className="bg-slate-800 rounded-xl p-6 hover:bg-slate-700 transition group">
-                <h4 className="text-xl font-bold mb-3 group-hover:text-blue-400 transition">
-                  {project.title}
-                </h4>
-                <p className="text-slate-300 mb-4 text-sm leading-relaxed">
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tech.map(tech => (
-                    <span key={tech} className="px-3 py-1 bg-slate-900 rounded-full text-xs text-blue-400">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                <div className="flex gap-3">
-                  <a href={project.github} target="_blank" rel="noopener noreferrer"
-                     className="flex items-center gap-2 text-sm hover:text-blue-400 transition">
-                    <Github size={16} /> Code
-                  </a>
-                  {project.demo && (
-                    <a href={project.demo} target="_blank" rel="noopener noreferrer"
-                       className="flex items-center gap-2 text-sm hover:text-blue-400 transition">
-                      <ExternalLink size={16} /> Demo
-                    </a>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+    /* ── SKILLS ── */
+    .skills-grid { display: flex; flex-wrap: wrap; gap: .75rem; }
+    .skill-pill {
+      padding: .6rem 1.4rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: background .2s, transform .2s;
+      cursor: default;
+    }
+    .skill-pill:hover { background: #1a2a5e; transform: scale(1.04); }
 
-      {/* Skills Section */}
-      <section id="skills" className="py-20 px-6 bg-slate-800/50">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex items-center gap-3 mb-12">
-            <Code2 className="text-blue-400" size={28} />
-            <h3 className="text-3xl font-bold">Skills & Technologies</h3>
-          </div>
-          <div className="flex flex-wrap gap-3">
-            {portfolio.skills.map(skill => (
-              <span key={skill} 
-                    className="px-6 py-3 bg-slate-900 rounded-lg text-lg hover:bg-blue-900 hover:scale-105 transition">
-                {skill}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
+    /* ── CONTACT ── */
+    .contact-section { text-align: center; }
+    .contact-section h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.2rem; font-weight: 700; margin-bottom: .75rem;
+    }
+    .contact-section p { color: var(--muted); font-size: 1.1rem; margin-bottom: 2rem; }
+    .cta-btn {
+      display: inline-flex; align-items: center; gap: .6rem;
+      padding: .9rem 2rem;
+      background: var(--blue); border-radius: 10px;
+      color: #fff; text-decoration: none;
+      font-size: 1rem; font-weight: 600;
+      transition: background .2s, transform .2s;
+    }
+    .cta-btn:hover { background: #4577e0; transform: translateY(-2px); }
+    .cta-btn svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
-      {/* Contact Section */}
-      <section id="contact" className="py-20 px-6">
-        <div className="max-w-6xl mx-auto text-center">
-          <h3 className="text-3xl font-bold mb-6">Let's Work Together</h3>
-          <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
-            I'm always interested in hearing about new projects and opportunities.
-          </p>
-          <a href={`mailto:${portfolio.email}`}
-             className="inline-flex items-center gap-2 px-8 py-4 bg-blue-600 hover:bg-blue-700 rounded-lg text-lg font-semibold transition">
-            <Mail size={20} />
-            Get In Touch
-          </a>
-        </div>
-      </section>
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: .88rem;
+    }
+  </style>
+</head>
+<body>
 
-      {/* Footer */}
-      <footer className="py-8 px-6 border-t border-slate-700">
-        <div className="max-w-6xl mx-auto text-center text-slate-400">
-          <p>© 2025 {portfolio.name}. Built with React & Tailwind CSS.</p>
-        </div>
-      </footer>
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <span class="nav-logo">Alejandro Botero</span>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </div>
     </div>
-  );
-}
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="available-badge"><span class="dot"></span> Available for work</div>
+    <h1>Full Stack Software Engineer</h1>
+    <p class="hero-bio">
+      SWE with hands-on experience in full-stack web development, databases and agile + scrum
+      environments. Bilingual in Spanish and English, with a strong foundation in algorithms,
+      system design, and practical problem-solving.
+    </p>
+    <div class="social-links">
+      <a href="https://github.com/alejobotero" target="_blank" title="GitHub">
+        <!-- GitHub icon -->
+        <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+      </a>
+      <a href="https://linkedin.com/in/alejboat" target="_blank" title="LinkedIn">
+        <!-- LinkedIn icon -->
+        <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+      <a href="mailto:alej.boat@gmail.com" title="Email">
+        <!-- Mail icon -->
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about" class="alt-bg">
+    <div class="section-inner">
+      <div class="section-header">
+        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <h2>About Me</h2>
+      </div>
+      <p class="about-text">
+        I'm a developer who loves turning ideas into reality through code. With a strong foundation
+        in both frontend and backend technologies, I build scalable applications that prioritize
+        user experience and clean architecture. I'm constantly learning and adapting to new
+        technologies to stay at the forefront of web development.
+      </p>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-inner">
+      <div class="section-header">
+        <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        <h2>Featured Projects</h2>
+      </div>
+      <div class="projects-grid">
+
+        <div class="card">
+          <h3>Heartspark</h3>
+          <p>A full-stack web application that helps users manage their daily tasks with an intuitive interface and real-time updates.</p>
+          <div class="tech-tags">
+            <span class="tech-tag">React</span>
+            <span class="tech-tag">Node.js</span>
+            <span class="tech-tag">MongoDB</span>
+          </div>
+          <div class="card-links">
+            <a href="https://github.com/alejobotero" target="_blank">
+              <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              Code
+            </a>
+            <a href="#" target="_blank">
+              <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Demo
+            </a>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Strayfinder</h3>
+          <p>An e-commerce platform with payment integration, product management, and user authentication features.</p>
+          <div class="tech-tags">
+            <span class="tech-tag">Next.js</span>
+            <span class="tech-tag">TypeScript</span>
+            <span class="tech-tag">React</span>
+          </div>
+          <div class="card-links">
+            <a href="https://github.com/alejobotero" target="_blank">
+              <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              Code
+            </a>
+            <a href="#" target="_blank">
+              <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Demo
+            </a>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Algorithm Visualizer</h3>
+          <p>A data visualization dashboard that displays real-time analytics with interactive charts and graphs.</p>
+          <div class="tech-tags">
+            <span class="tech-tag">React</span>
+            <span class="tech-tag">D3.js</span>
+            <span class="tech-tag">Express</span>
+          </div>
+          <div class="card-links">
+            <a href="https://github.com/alejobotero" target="_blank">
+              <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              Code
+            </a>
+            <a href="#" target="_blank">
+              <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Demo
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="alt-bg">
+    <div class="section-inner">
+      <div class="section-header">
+        <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        <h2>Skills &amp; Technologies</h2>
+      </div>
+      <div class="skills-grid">
+        <span class="skill-pill">JavaScript</span>
+        <span class="skill-pill">React</span>
+        <span class="skill-pill">Node.js</span>
+        <span class="skill-pill">Python</span>
+        <span class="skill-pill">TypeScript</span>
+        <span class="skill-pill">MongoDB</span>
+        <span class="skill-pill">PostgreSQL</span>
+        <span class="skill-pill">Git</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-inner contact-section">
+      <h2>Let's Work Together</h2>
+      <p>I'm always interested in hearing about new projects and opportunities.</p>
+      <a href="mailto:alej.boat@gmail.com" class="cta-btn">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Get In Touch
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Alejandro Botero. Built with HTML &amp; CSS.</p>
+  </footer>
+
+</body>
+</html>
+  
